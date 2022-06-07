@@ -2,6 +2,7 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+
   theme: {
     extend: {},
   },
@@ -9,10 +10,10 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        doctortheme: {
-          primary: "#0FCFEC",
-          secondary: "#19D3AE",
-          accent: "#3A4256",
+        mytheme: {
+          primary: "#a991f7",
+          secondary: "#f6d860",
+          accent: "#37cdbe",
           neutral: "#3d4451",
           "base-100": "#ffffff",
         },
@@ -21,5 +22,6 @@ module.exports = {
       "cupcake",
     ],
   },
+
   plugins: [require("daisyui")],
 }
