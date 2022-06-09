@@ -2,7 +2,6 @@ import React from 'react';
 import chair from '../../assets/images/chair.png';
 import bg from '../../assets/images/bg.png';
 import 'react-day-picker/dist/style.css';
-import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 
 
