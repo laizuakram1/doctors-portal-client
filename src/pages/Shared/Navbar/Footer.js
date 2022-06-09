@@ -5,10 +5,11 @@ import footerBg from '../../../assets/images/footer.png';
 
 const Footer = () => {
     return (
-        <footer style={{
-            background:`url(${footerBg})`,
-            backgroundSize: 'cover'
-        }}  class="footer p-10 text-accent">
+      <div style={{
+        background:`url(${footerBg})`,
+        backgroundSize: 'cover'
+    }}>
+            <footer  class="footer p-10 text-accent">
   <div>
     <span class="footer-title">Services</span> 
     <Link class="link link-hover" to='/'>Emergency Checkup</Link>
@@ -26,7 +27,15 @@ const Footer = () => {
     <span class="footer-title">Our Address</span> 
     <p>Dhanmondi 32, Dhaka, Bangladesh</p>
   </div>
+        
 </footer>
+
+<footer class="footer footer-center p-4 text-base-content">
+  <div>
+    <p>Copyright © 2022 - All right reserved 'Laizu'</p>
+  </div>
+</footer>
+      </div>
     );
 };
 
