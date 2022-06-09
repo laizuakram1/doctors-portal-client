@@ -1,7 +1,6 @@
-import { hasSelectionSupport } from '@testing-library/user-event/dist/utils';
 import React from 'react';
 
-const BookAppointment = ({ service }) => {
+const BookAppointment = ({ service, setTreatment }) => {
     const {slots, name} = service;
     return (
         <div class="card max-w-lg bg-base-100 shadow-md">
@@ -13,8 +12,9 @@ const BookAppointment = ({ service }) => {
                 }
                 </p>
                 <p>{slots.length} spaces available</p>
+
                 <div class="card-actions justify-center">
-                    <button disabled={slots.length === 0} class="btn btn-secondary">Book Appointment</button>
+                    <label onClick={()=>setTreatment(service)} disabled={slots.length === 0} for="Booking-modal" class="btn btn-secondary">Book Appointment</label>
                 </div>
             </div>
         </div>
