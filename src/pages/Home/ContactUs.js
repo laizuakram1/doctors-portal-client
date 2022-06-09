@@ -12,11 +12,11 @@ const ContactUs = () => {
                     <div class="card-body">
                         <div class="form-control">
     
-                            <input type="text" placeholder="email" class="input input-bordered" />
+                            <input type="text" placeholder="E-mail Address" class="input input-bordered" />
                         </div>
                         <div class="form-control">
                     
-                            <input type="text" placeholder="password" class="input input-bordered" />
+                            <input type="text" placeholder="Subject" class="input input-bordered" />
                            
                             <textarea class="textarea mt-2" placeholder="Message"></textarea>
                           
