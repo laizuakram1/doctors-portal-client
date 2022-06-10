@@ -7,7 +7,30 @@ const BookModals = ({ treatment,setTreatment,date }) => {
 
   const handleModal = event =>{
     event.preventDefault();
+    const day = event.target.day.value;
     const slot = event.target.slot.value;
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const phone = event.target.phone.value;
+    const data = {
+      day:day,
+      slot:slot,
+      name:name,
+      email:email,
+      phone:phone
+
+    },
+
+    url = `http://localhost:5000/booking`
+    fetch(url, {
+      method:'POST',
+      headers:{
+        "content-type":"application/json"
+      },
+      body:JSON.stringify(data)
+    })
+    
+
     setTreatment(null);
   }
 
@@ -21,13 +44,13 @@ const BookModals = ({ treatment,setTreatment,date }) => {
 
 
           <form onSubmit={handleModal} className='grid grid-cols-1 gap-2'>
-            <input type="text" disiabled value={format(date,'pp')} class="input input-bordered w-full max-w-xs" />
+            <input name='day' type="text" disiabled value={format(date,'PP')} class="input input-bordered w-full max-w-xs" />
             <select name='slot' class="select select-bordered w-full max-w-xs">
              {slots.map(slot => <option>{slot}</option>)}
             </select>
-            <input type="text" placeholder="Your Name" class="input input-bordered w-full max-w-xs" />
-            <input type="text" placeholder="E-mail" class="input input-bordered w-full max-w-xs" />
-            <input type="text" placeholder="Phone" class="input input-bordered w-full max-w-xs" />
+            <input name='name' type="text" placeholder="Your Name" class="input input-bordered w-full max-w-xs" />
+            <input name='email' type="text" placeholder="E-mail" class="input input-bordered w-full max-w-xs" />
+            <input name='phone' type="text" placeholder="Phone" class="input input-bordered w-full max-w-xs" />
             <input type="submit" value='submit' class="btn btn-secondary w-full max-w-xs" />
           </form>
         </div>

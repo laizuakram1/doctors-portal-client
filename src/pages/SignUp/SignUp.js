@@ -34,12 +34,20 @@ const SignUp = () => {
                                 <label class="label">
                                     <Link to='/' class="label-text-alt link link-hover">Forgot password?</Link>
                                 </label>
-                                <label class="label">
-                                    <p>Already have an account? <Link className='text-primary link link-hover' to='/login'>Login</Link></p>
-                                </label>
                             </div>
                             <div class="form-control mt-6">
                                 <button class="btn btn-accent text-white">SignUp</button>
+                            </div>
+                            <label class="label">
+                                    <p className='text-xs'>Already have an account? <Link className='text-primary link link-hover' to='/login'>Login</Link></p>
+                                </label>
+
+                            <div class="flex flex-col w-full border-opacity-50">
+                            
+                                <div class="divider">OR</div>
+                                <div class="grid h-20 card  rounded-box ">
+                                <button class="btn btn-outline mt-2">Continue with Google</button>
+                                </div>
                             </div>
                         </div>
                     </form>        
