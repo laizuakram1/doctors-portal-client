@@ -1,15 +1,41 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+
+
+
 
 const Login = () => {
-
+    const [err, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = event => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
 
+        //sign in with email and password
+        signInWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+            const user = result.user;
+            console.log(user);
+            navigate('/')
+        })
+
     }
+    
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    if(user){
+        console.log(user);
+    }
+    if(error){
+        setError(error.message);
+    }
+
+  
 
     return (
         <div>
@@ -29,6 +55,7 @@ const Login = () => {
                                 </label>
                                
                             </div>
+                            <p className='text-danger'>{err}</p>
                             <div class="form-control mt-6">
                                 <button type='submit' class="btn btn-accent text-white">Login</button>
                             </div>
@@ -40,7 +67,7 @@ const Login = () => {
                             
                                 <div class="divider">OR</div>
                                 <div class="grid h-20 card  rounded-box ">
-                                <button class="btn btn-outline mt-2">Continue with Google</button>
+                                <button onClick={()=>signInWithGoogle()} className="btn btn-outline mt-2">Continue with Google</button>
                                 </div>
                             </div>
                         </div>
