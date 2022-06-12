@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -12,6 +12,8 @@ import Loading from '../Shared/Navbar/Loading';
 const Login = () => {
     const [err, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const handleLogin = event => {
         event.preventDefault();
@@ -23,7 +25,7 @@ const Login = () => {
         .then((result) => {
             const user = result.user;
             console.log(user);
-            navigate('/')
+            navigate(from, { replace: true })
         })
 
     }
@@ -31,7 +33,7 @@ const Login = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     if(user){
         console.log(user);
-        navigate('/')
+        navigate(from, { replace: true })
     }
     if( loading){
         <Loading></Loading>

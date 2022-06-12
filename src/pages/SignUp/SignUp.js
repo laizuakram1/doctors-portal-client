@@ -31,13 +31,16 @@ const SignUp = () => {
 
     //google signin
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+
+    if(loading){
+        return  <Loading></Loading>
+     }
+     
     if (user) {
         console.log(user);
         navigate('/')
     }
-    if(loading){
-        <Loading></Loading>
-    }
+  
     if (error) {
         setError(error.message);
     }
