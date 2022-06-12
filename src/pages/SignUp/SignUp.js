@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import {  useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import Loading from '../Shared/Navbar/Loading';
 
 
 
@@ -10,6 +11,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp = () => {
     const [err, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSignUp = event => {
         event.preventDefault();
@@ -18,27 +20,30 @@ const SignUp = () => {
         const password = event.target.password.value;
 
         createUserWithEmailAndPassword(auth, email, password)
-        .then((result) =>{
-            const user = result.user;
-            console.log(user);
-           
-        })
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                navigate('/')
 
-
+            })
 
     }
 
     //google signin
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-    if(user){
+    if (user) {
         console.log(user);
+        navigate('/')
     }
-    if(error){
+    if(loading){
+        <Loading></Loading>
+    }
+    if (error) {
         setError(error.message);
     }
-     
 
-   
+
+
     return (
         <div>
             <div class="hero min-h-screen">
@@ -74,7 +79,7 @@ const SignUp = () => {
 
                                 <div class="divider">OR</div>
                                 <div class="grid h-20 card  rounded-box ">
-                                    <button onClick={()=>signInWithGoogle()} class="btn btn-outline mt-2">Continue with Google</button>
+                                    <button onClick={() => signInWithGoogle()} class="btn btn-outline mt-2">Continue with Google</button>
                                 </div>
                             </div>
                         </div>

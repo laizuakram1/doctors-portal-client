@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import Loading from '../Shared/Navbar/Loading';
 
 
 
@@ -30,6 +31,10 @@ const Login = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     if(user){
         console.log(user);
+        navigate('/')
+    }
+    if( loading){
+        <Loading></Loading>
     }
     if(error){
         setError(error.message);
