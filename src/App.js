@@ -8,6 +8,7 @@ import Navbar from './pages/Shared/Navbar/Navbar';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import RequireAuth from './pages/Shared/Navbar/RequireAuth';
+import Doctors from './pages/Doctors/Doctors';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
            <Appointment></Appointment>
         </RequireAuth>
       }></Route>
+      <Route path='/doctors' element={<Doctors></Doctors>}></Route>
       <Route path='/login' element={<Login></Login>}></Route>
       <Route path='/signup' element={<SignUp></SignUp>}></Route>
     </Routes>
